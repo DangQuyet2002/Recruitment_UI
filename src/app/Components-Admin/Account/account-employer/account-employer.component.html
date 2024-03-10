@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- <div class="mb-3">
+    <button class="btn btn-success">
+      <i class="fas fa-plus"></i> Thêm
+    </button>
+  </div> -->
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tên nhà tuyển dụng</th>
+        <th>Địa chỉ</th>
+        <th>Liên hệ chúng tôi</th>
+        <th>Trang web</th>
+        <th>Mô tả</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employer of employers">
+        <td>{{ employer.fullName }}</td>
+        <td>{{ employer.address }}</td>
+        <td [innerHTML]="employer.contact"></td>
+        <td [innerHTML]="employer.websiteURL"></td>
+        <td [innerHTML]="employer.description"></td>
+        <!-- <td>
+          <div class="btn-group" role="group">
+            <button class="btn btn-danger">
+              <i class="fas fa-trash"></i> Xóa
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-edit"></i> Sửa
+            </button>
+          </div>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

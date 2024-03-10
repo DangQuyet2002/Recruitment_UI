@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="mb-3">
+    <button class="btn btn-success">
+      <i class="fas fa-plus"></i> Thêm
+    </button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Họ Và Tên</th>
+        <th>Địa chỉ</th>
+        <th>Điện thoại</th>
+        <th>Email</th>
+        <th>Ngày Tạo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.createDate }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button class="btn btn-danger">
+              <i class="fas fa-trash"></i> Xóa
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-edit"></i> Sửa
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
