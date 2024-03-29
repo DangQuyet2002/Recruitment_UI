@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 import { ToastrService } from 'ngx-toastr';
-import { CreateSkill, ListSkill } from 'src/app/Common/models/user';
+import { CreateSkill, ListSkill } from 'src/app/Common/models/Admin';
 @Component({
   selector: 'app-skill',
   templateUrl: './skill.component.html'

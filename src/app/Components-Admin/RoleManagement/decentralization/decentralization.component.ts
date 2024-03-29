@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllUseRole, ManageUserRoles } from 'src/app/Common/models/user';
+import { GetAllUseRole, ManageUserRoles } from 'src/app/Common/models/Admin';
 import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 import { ToastrService } from 'ngx-toastr';
 import { v4 as uuidv4 } from 'uuid';

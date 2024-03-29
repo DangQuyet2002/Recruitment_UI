@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/Auth/auth.service';
-import { Login } from '../../Common/models/user';
+import { Login } from '../../Common/models/Admin';
 import { Router, NavigationEnd } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent {
   isFirstLoad: boolean = true;
   user: Login = new Login(); // Khởi tạo đối tượng user từ model
 
-  constructor(private authService: AuthService,private router: Router) {}
+  constructor( private toastr: ToastrService,private http: HttpClient,private authService: AuthService,private router: Router) {}
 
   reloadAndNavigateToHome() {
     // Tạo một số ngẫu nhiên để thêm vào URL
@@ -27,27 +29,32 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.user).subscribe((user: string) => {
-      const expirationTime = new Date().getTime() + 15 * 60 * 1000; // Thời gian hết hạn là 15 phút từ thời điểm hiện tại
-      localStorage.setItem('authUser', user);
-      localStorage.setItem('authExpiration', expirationTime.toString());
-      setTimeout(() => {
-        this.authService.logout(); // Gọi phương thức logout khi token hết hạn
-      }, 15 * 60 * 1000); // Sau 15 phút
 
-      const userRole = JSON.parse(user);
+      this.http.get('https://localhost:44372/api/User/VerifyToken?token=' + user).subscribe((res: any) => {
+      console.log(user)
+        if (res.content) {
+            this.toastr.success('Đăng Nhập Thành Công', 'Success', {
+              timeOut: 3000,
+            });
+            localStorage.setItem('token', user);
+            const userId = res.content.id;
+            localStorage.setItem('userid', userId);
 
-      if (userRole.role === 'Admin') {
-        this.router.navigate(['/home-admin']);
-      }
-      if (userRole.role === 'Employer') {
-        this.router.navigate(['/home-employer']);
-      }
-      if (userRole.role === 'User') {
-        this.reloadAndNavigateToHome();
-      }
-      else {
-        // Thực hiện hành động cho quyền không phải admin
-      }
+
+            if (res.content.role === 'Admin') {
+              this.router.navigate(['/home-admin']);
+            }
+            if (res.content.role === 'Employer') {
+              this.router.navigate(['/home-employer']);
+            }
+            if (res.content.role === 'User') {
+              this.reloadAndNavigateToHome();
+            }
+            else {
+              // Thực hiện hành động cho quyền không phải admin
+            }
+        }
+      })
     });
   }
 }

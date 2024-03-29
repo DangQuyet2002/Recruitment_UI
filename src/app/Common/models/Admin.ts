@@ -118,3 +118,16 @@ export class CreateSkill {
     this.logo = new File([], '');
   }
 }
+
+export class ListTitle {
+  id: number;
+  name = "";
+
+  constructor(id: number) {
+    this.id = id;
+  }
+}
+
+export class CreateTitle {
+  name = "";
+}

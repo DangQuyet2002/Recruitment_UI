@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CreateProvince, ListProvince } from 'src/app/Common/models/Admin';
+import { CreateProvince, CreateTitle, ListProvince, ListTitle } from 'src/app/Common/models/Admin';
 import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 
 @Component({
-  selector: 'app-province',
-  templateUrl: './province.component.html'
+  selector: 'app-title',
+  templateUrl: './title.component.html'
 })
-export class ProvinceComponent implements OnInit {
+export class TitleComponent implements OnInit {
 
-  dataCate: ListProvince[] = [];
-  selectedCate = new CreateProvince();
+  dataCate: ListTitle[] = [];
+  selectedCate = new CreateTitle();
   idUpdate = 0;
 
   constructor(private adminUserService: AdminUserService ,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.adminUserService.ListProvince()
+    this.adminUserService.GetListTitle()
       .subscribe({
         next: (response: any) => {
           this.dataCate = response;
@@ -27,8 +27,8 @@ export class ProvinceComponent implements OnInit {
       });
   }
 
-  GetProvinceById(id : number){
-    this.adminUserService.GetProvinceById(id).subscribe({
+  GetTitleById(id : number){
+    this.adminUserService.GetTitleById(id).subscribe({
       next: (response: any) => {
         this.selectedCate = response;
         this.idUpdate = response.id;
@@ -40,11 +40,11 @@ export class ProvinceComponent implements OnInit {
     });
   }
 
-  DeleteProvince(id: number) {
-    this.adminUserService.DeleteProvince(id).subscribe({
+  DeleteTitle(id: number) {
+    this.adminUserService.DeleteTitle(id).subscribe({
       next: (response) => {
         this.toastr.success("Xóa thành công!", "Succes");
-        this.adminUserService.ListProvince()
+        this.adminUserService.GetListTitle()
         .subscribe({
           next: (response: any) => {
             this.dataCate = response;
@@ -60,8 +60,8 @@ export class ProvinceComponent implements OnInit {
     });
   }
 
-  CreateProvince(data: CreateProvince) {
-    this.adminUserService.CreateProvince(data).subscribe({
+  CreateTitle(data: CreateTitle) {
+    this.adminUserService.CreateTitle(data).subscribe({
       next: (value) => {
         const modal = document.getElementById('addRoleModal');
         if (modal) {
@@ -77,7 +77,7 @@ export class ProvinceComponent implements OnInit {
           timeOut: 3000,
         });
 
-        this.adminUserService.ListProvince()
+        this.adminUserService.GetListTitle()
         .subscribe({
           next: (response: any) => {
             this.dataCate = response;
@@ -90,8 +90,8 @@ export class ProvinceComponent implements OnInit {
     });
   }
 
-  UpdateProvince(id : number,data: CreateProvince) {
-    this.adminUserService.UpdateProvince(id,data).subscribe({
+  UpdateTitle(id : number,data: CreateTitle) {
+    this.adminUserService.UpdateTitle(id,data).subscribe({
       next: (value) => {
         const modal = document.getElementById('updateRoleModal');
         if (modal) {
@@ -107,7 +107,7 @@ export class ProvinceComponent implements OnInit {
           timeOut: 3000,
         });
 
-        this.adminUserService.ListProvince()
+        this.adminUserService.GetListTitle()
         .subscribe({
           next: (response: any) => {
             this.dataCate = response;

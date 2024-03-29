@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 
 
 @Component({
@@ -10,17 +11,22 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderComponent {
   title = 'NgDotNetAuth.UI';
   username: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router , private adminservice: AdminUserService) {}
 
   ngOnInit(): void {
-    const authUserData = localStorage.getItem('authUser');
+    const authUserData = localStorage.getItem('token');
     if (authUserData) {
-      const parsedData = JSON.parse(authUserData);
-      if(parsedData.role === "User"){
-        this.username = parsedData.fullName;
-      } else {
-        this.username = '';
-      }
+      this.adminservice.VerifyToken(authUserData).subscribe(res => {
+        console.log(res);
+        if (res.errorCode == 400) {
+          this.username = '';
+        } else {
+          const parsedData = res.content;
+
+          this.username = parsedData.fullname;
+        }
+      });
     }
   }
+
 }

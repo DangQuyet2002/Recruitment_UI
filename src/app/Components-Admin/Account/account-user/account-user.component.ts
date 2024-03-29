@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAllUse } from 'src/app/Common/models/user';
+import { GetAllUse } from 'src/app/Common/models/Admin';
 import { AdminUserService } from '../../../services/Admin/admin-user.service';
 
 @Component({

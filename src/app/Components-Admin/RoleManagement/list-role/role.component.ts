@@ -1,5 +1,5 @@
 import { Component, OnInit ,EventEmitter, Input, Output } from '@angular/core';
-import { CreateRoleModel, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/user';
+import { CreateRoleModel, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/Admin';
 import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 import { ToastrService } from 'ngx-toastr';
 import { v4 as uuidv4 } from 'uuid';

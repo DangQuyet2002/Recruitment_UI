@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const authUserData = localStorage.getItem('authUser');
+    const authUserData = localStorage.getItem('datatoken');
     if (authUserData) {
       const parsedData = JSON.parse(authUserData);
       if(parsedData.role === "User"){

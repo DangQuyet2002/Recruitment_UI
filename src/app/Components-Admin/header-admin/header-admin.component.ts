@@ -10,6 +10,7 @@ export class HeaderAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

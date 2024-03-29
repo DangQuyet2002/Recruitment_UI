@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecruiterManagement } from 'src/app/Common/models/user';
+import { RecruiterManagement } from 'src/app/Common/models/Admin';
 import { AdminUserService } from 'src/app/services/Admin/admin-user.service';
 import { ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';

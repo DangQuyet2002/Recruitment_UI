@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateCategory, CreateProvince, CreateRoleModel, CreateSkill, GetAllUse, ListCategory, ListProvince, ListSkill, ManageUserRoles, RecruiterManagement, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/user';
+import { CreateCategory, CreateProvince, CreateRoleModel, CreateSkill, CreateTitle, GetAllUse, ListCategory, ListProvince, ListSkill, ListTitle, ManageUserRoles, RecruiterManagement, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/Admin';
 import { environment } from 'src/environments/environment';
-import { GetAllEmployer } from '../../Common/models/user';
+import { GetAllEmployer } from '../../Common/models/Admin';
 import { v4 as uuidv4 } from 'uuid';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,16 @@ export class AdminUserService {
   private urlCate = 'AdminCategory';
   private urlProvince = 'AdminProvince';
   private urlSkill = 'AdminSkill';
-
-
+  private urlTitle = 'AdminTitle';
+  private urlUser = 'User';
+  private token = "";
 
 
   constructor(private http:HttpClient) { }
+
+  public VerifyToken(token: string): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/${this.urlUser}/VerifyToken?token=${token}}`);
+  }
 
   public getAllUser(): Observable<GetAllUse[]> {
     return this.http.get<GetAllUse[]>(`${environment.apiUrl}/${this.url}/GetAllUser`);
@@ -127,4 +133,20 @@ export class AdminUserService {
     return this.http.get<ListSkill[]>(`${environment.apiUrl}/${this.urlSkill}/GetSkillById?id=${id}`);
   }
   //#endregion
+
+  public GetListTitle(): Observable<ListTitle[]> {
+    return this.http.get<ListTitle[]>(`${environment.apiUrl}/${this.urlTitle}/GetListTitle`);
+  }
+  public DeleteTitle(id : number): Observable<ListTitle[]> {
+    return this.http.delete<ListTitle[]>(`${environment.apiUrl}/${this.urlTitle}/DeleteTitle?id=${id}`);
+  }
+  public CreateTitle(createCate: CreateTitle): Observable<CreateTitle[]> {
+    return this.http.post<CreateTitle[]>(`${environment.apiUrl}/${this.urlTitle}/CreateTitle`,createCate);
+  }
+  public UpdateTitle( id : number ,updateCate: CreateTitle): Observable<CreateTitle[]> {
+    return this.http.post<CreateTitle[]>(`${environment.apiUrl}/${this.urlTitle}/UpdateTitle?id=${id}`, updateCate);
+  }
+  public GetTitleById(id : number): Observable<ListTitle[]> {
+    return this.http.get<ListTitle[]>(`${environment.apiUrl}/${this.urlTitle}/GetTitleById?id=${id}`);
+  }
 }

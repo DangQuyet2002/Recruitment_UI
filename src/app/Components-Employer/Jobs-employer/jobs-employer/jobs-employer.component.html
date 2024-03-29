@@ -1,0 +1,149 @@
+<!-- Modal -->
+<button class="btn btn-success" data-toggle="modal" data-target="#addRoleModal">
+  <i class="fas fa-plus"></i> Thêm
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tên</th>
+      <th>Ngày Tạo</th>
+      <th>Tỉnh</th>
+      <th>Thời Gian</th>
+      <th>Kỹ Năng</th>
+      <th>Tiêu Đề</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cate of dataCate">
+      <td>{{ cate.name }}</td>
+      <td>{{ cate.createdate}}</td>
+      <td>{{ cate.province }}</td>
+      <td>{{ cate.time }}</td>
+      <td>{{ cate.skills }}</td>
+      <td>{{ cate.title }}</td>
+
+      <td>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#updateRoleModal">Sửa</button>
+        <button class="btn btn-danger">Xóa</button>
+      </td>
+    </tr>
+    <tr *ngIf="dataCate">
+      Không có dữ liệu
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRoleModalLabel">Thêm Bài Tuyển Dụng Mới</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #uploadForm="ngForm">
+          <!-- Tab links -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Tab 1</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Tab 2</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Tab 3</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Tab 4</button>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+              <!-- Content for Tab 1 -->
+              <div class="form-group">
+                <label for="skillName">Name:</label>
+                <input type="text" class="form-control" id="Name"  name="Name" required>
+              </div>
+              <div style="display: flex;">
+                <div>
+                  <div class="form-group">
+                      <label for="skillLogo">Min salary:</label>
+                      <input type="text" class="form-control" id="Minsalary"  name="Minsalary" required>
+                  </div>
+                </div>
+                    <div class="form-group col">
+                        <label for="skillLogo">Max salary:</label>
+                        <input type="text" class="form-control" id="Maxsalary"  name="Maxsalary" required>
+                    </div>
+                </div>
+              <div class="form-group">
+                <label for="skillLogo" class="form-label">Province:</label>
+                <select class="form-select">
+                    <option *ngFor="let option of apiprovince" [value]="option.id">{{ option.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="skillLogo" class="form-label">Time:</label>
+              <select class="form-select">
+                  <option *ngFor="let option of apitime" [value]="option.id">{{ option.name }}</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="skillLogo" class="form-label">Skill:</label>
+
+         </div>
+          </div>
+          <div class="form-group">
+            <label for="skillLogo" class="form-label">Title:</label>
+            <select class="form-select">
+                <option *ngFor="let option of apititle" [value]="option.id">{{ option.name }}</option>
+            </select>
+          </div>
+            </div>
+            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+              <!-- Content for Tab 2 -->
+              <div class="form-group">
+                <label for="skillLogo">Max salary:</label>
+                <input type="text" class="form-control" id="Maxsalary"  name="Maxsalary" required>
+              </div>
+              <div class="form-group">
+                <label for="skillLogo" class="form-label">Province:</label>
+                <select class="form-select">
+                  <option *ngFor="let option of apiprovince" [value]="option.id">{{ option.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+              <!-- Content for Tab 3 -->
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+              <!-- Content for Tab 4 -->
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

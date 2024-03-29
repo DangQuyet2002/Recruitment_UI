@@ -1,1 +1,29 @@
-<p>home-employer works!</p>
+<div id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <app-sidebar-employer></app-sidebar-employer>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+          <app-header-employer></app-header-employer>
+
+          <div class="container-fluid">
+            <router-outlet></router-outlet>
+          </div>
+      </div>
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; Your Website 2024</span>
+              </div>
+          </div>
+      </footer>
+      <!-- End of Footer -->
+
+  </div>
+  </div>
+</div>

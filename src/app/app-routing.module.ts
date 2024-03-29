@@ -7,6 +7,7 @@ import { HomeAdminComponent } from './Components-Admin/home-admin/home-admin.com
 import { HomeEmployerComponent } from './Components-Employer/home-employer/home-employer.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { RecruiterManagementComponent } from './Components-Admin/RecruiterManagement/recruiter-management/recruiter-management.component';
+import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-employer/jobs-employer.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +19,19 @@ const routes: Routes = [
 
 
   //Employer
-  { path: 'home-employer', component: HomeEmployerComponent },
+  { path: 'home-employer',
+    component: HomeEmployerComponent,
+    children: [
+      {
+        path: 'list-user-apply',
+        loadChildren: () => import('./Components-Employer/apply-employer/apply-employer/apply-employer.module').then((m) => m.ApplyModule),
+      },
+      {
+        path: 'list-jobs',
+        loadChildren: () => import('./Components-Employer/Jobs-employer/jobs-employer/jobs-employer.module').then((m) => m.JobsEmployerModule),
+      },
+    ]
+   },
 
   { path: '', component: HomeComponent },
 
@@ -58,6 +71,10 @@ const routes: Routes = [
       {
         path: 'list-skill',
         loadChildren: () => import('./Components-Admin/Skill/skill/skill.module').then((m) => m.SkillModule),
+      },
+      {
+        path: 'list-title',
+        loadChildren: () => import('./Components-Admin/Titles/title/title.module').then((m) => m.TitleModule),
       },
     ],
   },

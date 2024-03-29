@@ -26,11 +26,16 @@ import { DecentralizationComponent } from './Components-Admin/RoleManagement/dec
 import { CategoryComponent } from './Components-Admin/Categorys/category/category.component';
 import { ProvinceComponent } from './Components-Admin/Province/province/province.component';
 import { SkillComponent } from './Components-Admin/Skill/skill/skill.component';
+import { TitleComponent } from './Components-Admin/Titles/title/title.component';
+import { HeaderEmployerComponent } from './Components-Employer/header-employer/header-employer.component';
+import { SidebarEmployerComponent } from './Components-Employer/sidebar-employer/sidebar-employer.component';
+import { ApplyEmployerComponent } from './Components-Employer/apply-employer/apply-employer/apply-employer.component';
+import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-employer/jobs-employer.component';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent , RegisterComponent, HomeComponent, HomeAdminComponent,HomeEmployerComponent, AboutUsComponent, HeaderComponent, FooterComponent, SidebarComponent, HeaderAdminComponent, AccountUserComponent, AccountEmployerComponent, RecruiterManagementComponent, RoleComponent, DecentralizationComponent, CategoryComponent, ProvinceComponent, SkillComponent],
+  declarations: [AppComponent,LoginComponent , RegisterComponent, HomeComponent, HomeAdminComponent,HomeEmployerComponent, AboutUsComponent, HeaderComponent, FooterComponent, SidebarComponent, HeaderAdminComponent, AccountUserComponent, AccountEmployerComponent, RecruiterManagementComponent, RoleComponent, DecentralizationComponent, CategoryComponent, ProvinceComponent, SkillComponent, TitleComponent, HeaderEmployerComponent, SidebarEmployerComponent, ApplyEmployerComponent, JobsEmployerComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,BrowserAnimationsModule,
-  ToastrModule.forRoot(),],
+  ToastrModule.forRoot(),CommonModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
