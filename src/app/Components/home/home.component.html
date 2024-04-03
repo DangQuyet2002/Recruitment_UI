@@ -13,24 +13,18 @@
               <input type="text" class="form-control" name="search" placeholder="what are you looging for?">
             </div>
             <div class="col-lg-3 form-cols">
-              <div class="default-select" id="default-selects">
-                <select>
-                  <option value="1">Select area</option>
-                  <option value="2">Dhaka</option>
-                  <option value="3">Rajshahi</option>
-                  <option value="4">Barishal</option>
-                  <option value="5">Noakhali</option>
+              <div class="default-select">
+                <select class="form-select">
+                  <option>Chọn Thành Phố</option>
+                  <option *ngFor="let option of apiprovince" [value]="option.id">{{ option.name }}</option>
                 </select>
               </div>
             </div>
             <div class="col-lg-3 form-cols">
-              <div class="default-select" id="default-selects2">
-                <select>
-                  <option value="1">All Category</option>
-                  <option value="2">Medical</option>
-                  <option value="3">Technology</option>
-                  <option value="4">Goverment</option>
-                  <option value="5">Development</option>
+              <div class="default-select" >
+                <select class="form-select">
+                  <option>Chọn kỹ năng</option>
+                  <option *ngFor="let option of apiskill" [value]="option.id">{{ option.name }}</option>
                 </select>
               </div>
             </div>
@@ -48,120 +42,14 @@
 </section>
 <!-- End banner Area -->
 
-<!-- Start features Area -->
-<section class="features-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="single-feature">
-          <h4>Searching</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="single-feature">
-          <h4>Applying</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="single-feature">
-          <h4>Security</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="single-feature">
-          <h4>Notifications</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End features Area -->
-
 <!-- Start popular-post Area -->
 <section class="popular-post-area pt-100">
   <div class="container">
     <div class="row align-items-center">
-      <div class="active-popular-post-carusel">
-        <div class="single-popular-post d-flex flex-row">
+      <div class="active-popular-post-carusel" >
+        <div class="single-popular-post d-flex flex-row" *ngFor="let option of gettopnewjob">
           <div class="thumb">
             <img class="img-fluid" src="assets/img/p1.png" alt="">
-            <a class="btns text-uppercase" href="#">view job post</a>
-          </div>
-          <div class="details">
-            <a href="#"><h4>Creative Designer</h4></a>
-            <h6>Los Angeles</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-            </p>
-          </div>
-        </div>
-        <div class="single-popular-post d-flex flex-row">
-          <div class="thumb">
-            <img src="assets/img/p2.png" alt="">
-            <a class="btns text-uppercase" href="#">view job post</a>
-          </div>
-          <div class="details">
-            <a href="#"><h4>Creative Designer</h4></a>
-            <h6>Los Angeles</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-            </p>
-          </div>
-        </div>
-        <div class="single-popular-post d-flex flex-row">
-          <div class="thumb">
-            <img src="assets/img/p1.png" alt="">
-            <a class="btns text-uppercase" href="#">view job post</a>
-          </div>
-          <div class="details">
-            <a href="#"><h4>Creative Designer</h4></a>
-            <h6>Los Angeles</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-            </p>
-          </div>
-        </div>
-        <div class="single-popular-post d-flex flex-row">
-          <div class="thumb">
-            <img src="assets/img/p2.png" alt="">
-            <a class="btns text-uppercase" href="#">view job post</a>
-          </div>
-          <div class="details">
-            <a href="#"><h4>Creative Designer</h4></a>
-            <h6>Los Angeles</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-            </p>
-          </div>
-        </div>
-        <div class="single-popular-post d-flex flex-row">
-          <div class="thumb">
-            <img src="assets/img/p1.png" alt="">
-            <a class="btns text-uppercase" href="#">view job post</a>
-          </div>
-          <div class="details">
-            <a href="#"><h4>Creative Designer</h4></a>
-            <h6>Los Angeles</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-            </p>
-          </div>
-        </div>
-        <div class="single-popular-post d-flex flex-row">
-          <div class="thumb">
-            <img src="assets/img/p2.png" alt="">
             <a class="btns text-uppercase" href="#">view job post</a>
           </div>
           <div class="details">

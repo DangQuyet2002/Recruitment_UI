@@ -31,7 +31,7 @@ export class OptionTitle {
   }
 }
 
-export class OptionSkill {
+export class OptionCategory {
   id: number;
   name: string;
 
@@ -41,7 +41,19 @@ export class OptionSkill {
   }
 }
 
+export class OptionSkill {
+  id: number;
+  name: string;
+  disabled: boolean;
+  constructor(id: number, name: string , disabled :boolean ) {
+    this.id = id;
+    this.name = name;
+    this.disabled =  false;
+  }
+}
+
 export class GetListJobs {
+  id = 0;
   name = "";
   createdate = "";
   province = "";
@@ -63,4 +75,20 @@ export class Token {
     this.content = content;
   }
 }
+
+export class CreateJob {
+  id: number = 0;
+  name: string = "";
+  description: string = "";
+  introduce: string = "";
+  objectTarget: string = "";
+  experience: string = "";
+  provinceId: number = 0;
+  timeId: number = 0;
+  minSalary: number = 0;
+  maxSalary: number = 0;
+  skillIds: number[] = [];
+  titleId: number = 0;
+}
+
 

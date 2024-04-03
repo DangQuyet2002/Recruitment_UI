@@ -5,7 +5,7 @@ import { GetAllUse, RecruiterManagement } from 'src/app/Common/models/Admin';
 import { environment } from 'src/environments/environment';
 import { GetAllEmployer } from '../../Common/models/Admin';
 import { v4 as uuidv4 } from 'uuid';
-import { GetListJobs, OptionData, OptionTime } from 'src/app/Common/models/Employer';
+import { CreateJob, GetListJobs, OptionData, OptionTime } from 'src/app/Common/models/Employer';
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +42,26 @@ export class EmployerService {
   public ApiSkill(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/${this.shared}/ApiSkill`);
   }
+  public ApiCategory(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/${this.shared}/ApiCategory`);
+  }
 
+  public CreateJobs(id:string, createjob: CreateJob): Observable<CreateJob[]> {
+    this.getToken();
+    return this.http.post<CreateJob[]>(`${environment.apiUrl}/${this.url}/CreateJobs?id=${this.idEmployer}`,createjob);
+  }
+
+  public GetJobById(id : number): Observable<CreateJob[]> {
+    return this.http.get<CreateJob[]>(`${environment.apiUrl}/${this.url}/GetJobById?id=${id}`);
+  }
 
   public GetListJobs(): Observable<GetListJobs[]> {
     this.getToken();
     return this.http.get<GetListJobs[]>(`${environment.apiUrl}/${this.url}/GetListJobs?id=${this.idEmployer}`);
+  }
+
+  public UpdateJobs( id : number ,updatejob: CreateJob): Observable<CreateJob[]> {
+    return this.http.post<CreateJob[]>(`${environment.apiUrl}/${this.url}/UpdateJobs?id=${id}`, updatejob);
   }
 
   public GetAllEmployer(): Observable<GetAllEmployer[]> {

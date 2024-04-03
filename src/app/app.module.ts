@@ -31,11 +31,14 @@ import { HeaderEmployerComponent } from './Components-Employer/header-employer/h
 import { SidebarEmployerComponent } from './Components-Employer/sidebar-employer/sidebar-employer.component';
 import { ApplyEmployerComponent } from './Components-Employer/apply-employer/apply-employer/apply-employer.component';
 import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-employer/jobs-employer.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @NgModule({
   declarations: [AppComponent,LoginComponent , RegisterComponent, HomeComponent, HomeAdminComponent,HomeEmployerComponent, AboutUsComponent, HeaderComponent, FooterComponent, SidebarComponent, HeaderAdminComponent, AccountUserComponent, AccountEmployerComponent, RecruiterManagementComponent, RoleComponent, DecentralizationComponent, CategoryComponent, ProvinceComponent, SkillComponent, TitleComponent, HeaderEmployerComponent, SidebarEmployerComponent, ApplyEmployerComponent, JobsEmployerComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,BrowserAnimationsModule,
-  ToastrModule.forRoot(),CommonModule],
+  ToastrModule.forRoot(),CommonModule,NgSelectModule,FormsModule,CKEditorModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -46,4 +49,6 @@ import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  public Editor = ClassicEditor;
+}
