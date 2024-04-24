@@ -1,0 +1,203 @@
+<app-header></app-header>
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+<section class="contact-page-area section-gap">
+  <div class="container">
+    <div class="row">
+      <div class='col-sm-8'>
+        <form (ngSubmit)="UpdateProfile(idUpdate,dataCate)" class="box-container"  enctype="multipart/form-data" id="form">
+          <div class='box-body'>
+            <div class='group-information'>
+              <h4 class="heading-small text-muted mb-4">Thông Tin Người Dùng</h4>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-full-name">Họ và Tên</label>
+                      <input type="text" id="input-full-name" name="fullName" [(ngModel)]="dataCate.fullName" class="form-control form-control-alternative" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-title">Tiêu Đề</label>
+                      <input  type="text" id="input-title" name="title" [(ngModel)]="dataCate.title" class="form-control form-control-alternative" placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-birthday">Ngày Sinh</label>
+                      <input type="date"
+                        id="input-birthday"
+                        name="dateOfBirth"
+                        [ngModel]="dataCate.dateOfBirth | slice:0:10"
+                        class="form-control form-control-alternative"
+                        placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group focused gender-select">
+                      <label for="gender">Chọn Giới Tính:</label>
+                      <select class="form-control" id="gender" name="gender" [(ngModel)]="dataCate.gender">
+                        <option [value]="'Nam'" [selected]="dataCate.gender === 'Nam'">Nam</option>
+                        <option [value]="'Nữ'" [selected]="dataCate.gender === 'Nữ'">Nữ</option>
+                        <option [value]="'Other'" [selected]="dataCate.gender === 'Other'">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <hr class="my-4">
+            </div>
+
+            <div class='group-information'>
+              <h4 class="heading-small text-muted mb-4">Thông Tin Liên Lạc</h4>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-address">Địa Chỉ</label>
+                      <input  type="text" id="input-address" [(ngModel)]="dataCate.address" name="address" class="form-control form-control-alternative" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-phone-number">Điện Thoại</label>
+                      <input  type="text" id="input-phone-number" [(ngModel)]="dataCate.phone" name="phone" class="form-control form-control-alternative" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Email</label>
+                      <input  type="email" id="input-email" [(ngModel)]="dataCate.email" name="email" class="form-control form-control-alternative" placeholder="">
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+              </div>
+            </div>
+
+            <div class='group-information'>
+              <h4 class="heading-small text-muted mb-4">Thông Tin Về Tôi</h4>
+              <div class="pl-lg-4">
+                <div class="form-group focused">
+                  <label>Thông Tin Về Tôi</label>
+                  <textarea rows="4" class="form-control form-control-alternative" name="description"
+                            [(ngModel)]="dataCate.description"
+                            placeholder="A few words about you ..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="input-url-avatar" name="urlAvatar" [value]="avatarupdate">
+          <button class='btn primary-animation' type="submit">Cập Nhật</button>
+        </form>
+      </div>
+
+      <div class="col-sm-4">
+        <div class='box-container profile-info'>
+          <div class='box-header'>
+            <div class="profile-avatar">
+              <ng-container *ngIf="dataCate.urlAvatar; else defaultAvatar">
+                <img [src]="dataCate.urlAvatar" alt="Avatar">
+              </ng-container>
+
+              <ng-template #defaultAvatar>
+                <img [src]="avatarSrc" alt="Default Avatar">
+              </ng-template>
+
+              <input type="file" id="avatarUploadInput" (change)="handleAvatarChange($event)">
+            </div>
+
+            <input type="text" id="yourIdInput" value="@Model.Id" placeholder="Enter ID" style="display:none">
+            <div class='profile-content'>
+              <div class="text-welcome">Chào bạn trở lại,</div>
+              <h4 class="profile-fullname">{{dataCate.fullName}}</h4>
+              <span style="background-color:gray" class='is-verify'>
+                Tài Khoản Đã Xác Thực
+              </span>
+              <a href="/price" class="btn upgrade-btn primary-animation">
+                <i class="fa-solid fa-circle-arrow-up"></i>
+                <span>
+                  Nâng Cấp Tài Khoản
+                </span>
+              </a>
+            </div>
+            <div class="box-body mt-50">
+              <div class="group">
+                <div class="group-switch">
+                  <input type="checkbox" id="switch-1" class="input-switch" [(ngModel)]="switch1Checked">
+                  <label for="switch-1" class="label-switch"></label>
+                  <span class="job-waiting-status-text" [ngClass]="{'status-off-1': !switch1Checked, 'status-on-1': switch2Checked}">
+                    {{ switch1Checked ? 'Đang Bật tìm việc' : 'Đang Tắt tìm việc' }}
+                  </span>
+                </div>
+
+                <div class="col-xs-12">
+                  <p class="job-waiting-text" *ngIf="!switch1Checked">
+                    Bật tìm việc giúp hồ sơ của bạn nổi bật hơn và được chú ý nhiều hơn trong danh sách tìm kiếm của
+                  </p>
+
+                  <div class="box-job-waiting" *ngIf="switch1Checked">
+                    <div class="box-job-waiting__title">
+                      Trạng thái <span class="highlight">Bật tìm việc</span> sẽ tự động tắt sau <b class="highlight" id="time-remaining-turn-on-job">14 ngày</b>. Nếu bạn vẫn còn nhu cầu tìm việc, hãy <span class="highlight">Bật tìm việc trở lại</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="group mt-30">
+                <div class="group-switch">
+                  <input type="checkbox" id="switch-2" class="input-switch" [(ngModel)]="switch2Checked">
+                  <label for="switch-2" class="label-switch"></label>
+                  <span class="job-waiting-status-text" [ngClass]="{'status-off-2': !switch2Checked, 'status-on-2': switch2Checked}">
+                    {{ switch2Checked ? 'Trạng thái tìm việc đang bật' : 'Chưa cho phép NTD tìm kiếm hồ sơ' }}
+                  </span>
+                </div>
+
+                <div class="col-xs-12" >
+                  <p class="job-waiting-description" *ngIf="!switch2Checked">
+                    Khi bạn cho phép, các NTD uy tín có thể chủ động kết nối và gửi đến bạn những cơ hội việc làm hấp dẫn nhất, giúp nhân đôi hiệu quả tìm việc.
+                  </p>
+
+                  <div class="description-allow-employee-search" *ngIf="switch2Checked">
+                    <p style="margin-bottom: 10">
+                      Khi có cơ hội việc làm phù hợp, NTD sẽ liên hệ và trao đổi với bạn qua:
+                    </p>
+                    <ul>
+                      <div>
+                        <i class="fa-solid fa-check"></i>
+                        <li>Nhắn tin qua Top Connect trên SendCV</li>
+                      </div>
+                      <div>
+                        <i class="fa-solid fa-check"></i>
+                        <li>Email và Số điện thoại của bạn</li>
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='box-footer' style="margin-top: 12px">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>
+            Cập nhật SendCV Profile để gia tăng 300% cơ hội việc làm tốt
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

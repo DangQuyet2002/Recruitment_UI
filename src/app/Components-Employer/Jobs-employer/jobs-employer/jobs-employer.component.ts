@@ -21,6 +21,7 @@ export class JobsEmployerComponent implements OnInit {
   selectedCars = [];
   id = "";
   idUpdate = 0;
+  p: number = 1;
   constructor(private employerService: EmployerService ,private toastr: ToastrService , private http: HttpClient,private config: NgSelectConfig) {
 
   }

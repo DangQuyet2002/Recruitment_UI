@@ -1,0 +1,109 @@
+.single-popular-post-container {
+  margin-right: 15px;
+  display: grid;
+  grid-column: 2;
+  line-height: 100%;
+  height: 100%;
+}
+
+.slick-slide img {
+  display: inline;
+}
+
+.boxskill {
+  display: grid;
+  line-height: 100%;
+  height: 100%;
+}
+.single-popular-post {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc; /* Add border around the whole element */
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.thumb {
+  flex: 0 0 25%; /* Điều chỉnh chiều rộng của thumbnail */
+  display: flex;
+  align-items: flex-start; /* Căn theo phía trên của parent container */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  position: relative; /* Để tạo không gian cho nút */
+}
+
+.thumb img {
+  width: 100%;
+  max-width: 70%; /* Thay đổi chiều rộng tối đa của hình ảnh */
+  height: auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.btns {
+  position: absolute; /* Để nút đứng trên hình ảnh */
+  bottom: 10px; /* Điều chỉnh vị trí xuống dưới một chút */
+  text-decoration: none;
+}
+
+.details {
+  flex: 1;
+  padding: 15px;
+}
+
+.details h4 {
+  color: #333;
+  font-size: 18px;
+  margin-top: 0;
+  height: 35px;
+}
+
+.details h6 {
+  color: #666;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.price-desc,
+.desc {
+  margin-top: 5px;
+}
+
+.price {
+  color: #007bff;
+  font-size: 16px;
+}
+
+.desc {
+  color: #555;
+  font-size: 16px;
+}
+
+.bottomitem {
+  margin-bottom: 12px;
+}
+.namejobs {
+  height: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .fullscreen {
+    height: 80vh;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .fullscreen {
+    height: 100vh;
+  }
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+.titles a {
+  text-decoration: none;
+}

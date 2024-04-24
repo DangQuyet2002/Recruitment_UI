@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './Components/home/home.component';
-import { LoginComponent } from './Components/login/login.component';
-import { RegisterComponent } from './Components/register/register.component';
-import { HomeAdminComponent } from './Components-Admin/home-admin/home-admin.component';
+import { HomeComponent } from './Components/Pages/home/home.component';
+import { LoginComponent } from './Components/Layout/login/login.component';
+import { RegisterComponent } from './Components/Layout/register/register.component';
+import { HomeAdminComponent } from './Components-Admin/Pages/home-admin/home-admin.component';
 import { HomeEmployerComponent } from './Components-Employer/home-employer/home-employer.component';
-import { AboutUsComponent } from './Components/about-us/about-us.component';
-import { RecruiterManagementComponent } from './Components-Admin/RecruiterManagement/recruiter-management/recruiter-management.component';
+import { AboutUsComponent } from './Components/Pages/about-us/about-us.component';
+import { RecruiterManagementComponent } from './Components-Admin/Pages/recruiter-management/recruiter-management.component';
 import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-employer/jobs-employer.component';
+import { DetailComponent } from './Components/Pages/detail/detail.component';
+import { ProfileUserComponent } from './Components/Pages/profile-user/profile-user.component';
+import { CvsComponent } from './Components/Pages/cvs/cvs.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about-us', component: AboutUsComponent },
-
+  { path: 'job-post/:slug', component: DetailComponent },
+  { path: 'profile-user/:id', component: ProfileUserComponent },
+  { path: 'my-cv', component: CvsComponent },
 
 
 
@@ -50,31 +55,31 @@ const routes: Routes = [
       },
       {
         path: 'recruiter-management',
-        loadChildren: () => import('./Components-Admin/RecruiterManagement/recruiter-management/recruiter-management.module').then((m) => m.RecruiterManagementModule),
+        loadChildren: () => import('./Components-Admin/Pages/recruiter-management/recruiter-management.module').then((m) => m.RecruiterManagementModule),
       },
       {
         path: 'list-role',
-        loadChildren: () => import('./Components-Admin/RoleManagement/list-role/role.module').then((m) => m.RoleModule),
+        loadChildren: () => import('./Components-Admin/Pages/list-role/role.module').then((m) => m.RoleModule),
       },
       {
         path: 'list-decentralization',
-        loadChildren: () => import('./Components-Admin/RoleManagement/decentralization/decentralization.module').then((m) => m.DecentralizationModule),
+        loadChildren: () => import('./Components-Admin/Pages/decentralization/decentralization.module').then((m) => m.DecentralizationModule),
       },
       {
         path: 'list-category',
-        loadChildren: () => import('./Components-Admin/Categorys/category/category.module').then((m) => m.CategoryModule),
+        loadChildren: () => import('./Components-Admin/Pages/category/category.module').then((m) => m.CategoryModule),
       },
       {
         path: 'list-province',
-        loadChildren: () => import('./Components-Admin/Province/province/province.module').then((m) => m.ProvinceModule),
+        loadChildren: () => import('./Components-Admin/Pages/province/province.module').then((m) => m.ProvinceModule),
       },
       {
         path: 'list-skill',
-        loadChildren: () => import('./Components-Admin/Skill/skill/skill.module').then((m) => m.SkillModule),
+        loadChildren: () => import('./Components-Admin/Pages/skill/skill.module').then((m) => m.SkillModule),
       },
       {
         path: 'list-title',
-        loadChildren: () => import('./Components-Admin/Titles/title/title.module').then((m) => m.TitleModule),
+        loadChildren: () => import('./Components-Admin/Pages/title/title.module').then((m) => m.TitleModule),
       },
     ],
   },

@@ -57,7 +57,7 @@
   background:$primary-color;
   color:$white;
   padding:6px 20px!important;
-  text-transform:uppercase; 
+  text-transform:uppercase;
   &:hover{
     background:rgba($primary-color,.2);
     color:$primary-color;
@@ -156,7 +156,7 @@
 /* Nav Meu Styling */
 .nav-menu a {
   padding:6px 10px;
-  text-decoration: none;
+  text-decoration: none !important;
   display: inline-block;
   color: $white;
   font-weight: 400;
@@ -166,7 +166,7 @@
 }
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a {
-  // color: $primary-color;
+  text-decoration: none;
 }
 
 .nav-menu > li {
@@ -222,7 +222,7 @@
 
 #mobile-nav-toggle i {
   color: $primary-color;
-  font-weight: 900;  
+  font-weight: 900;
 }
 
 @media (max-width: 960px) {

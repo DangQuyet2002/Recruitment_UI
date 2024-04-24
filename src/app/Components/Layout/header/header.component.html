@@ -1,0 +1,40 @@
+
+<header id="header">
+  <div class="container">
+    <div class="align-items-center justify-content-between d-flex">
+      <div id="logo">
+        <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>
+      </div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.html">Trang Chủ</a></li>
+          <li><a routerLink="/about-us">Về Chúng Tôi</a></li>
+          <li><a href="category.html">Danh Mục</a></li>
+          <li><a href="price.html">Giá</a></li>
+          <li><a href="blog-home.html">Bài Viết</a></li>
+          <li><a href="contact.html">Liên Hệ</a></li>
+
+          <li class="menu-has-children"><a href="">Pages&nbsp;<i class="fa-solid fa-angle-down"></i></a>
+          <ul *ngIf="role === ''" class="sub-menu">
+            <li><a href="search.html">Công việc đã ứng tuyển</a></li>
+            <li><a href="search.html">Đăng Xuất</a></li>
+          </ul>
+          <ul *ngIf="role === 'User'" class="sub-menu">
+            <li><a [routerLink]="['/profile-user/', Id]">Hồ sơ Cá Nhân</a></li>
+            <li><a href="/my-cv">CV Của Bạn</a></li>
+            <li><a href="search.html">Công việc đã ứng tuyển</a></li>
+            <li><a href="search.html">Đăng Xuất</a></li>
+          </ul>
+          <ul *ngIf="role === 'Employer'" class="sub-menu">
+            <li><a href="elements.html">Hồ sơ Cá Nhân</a></li>
+            <li><a href="search.html">Đăng Xuất</a></li>
+          </ul>
+          </li>
+          <li *ngIf="!username"><a class="ticker-btn" routerLink="/register">Đăng Ký</a></li>
+          <li *ngIf="!username"><a class="ticker-btn" routerLink="/login">Đăng Nhập</a></li>
+          <li *ngIf="username"><a class="ticker-btn">{{ username }}</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </div>
+</header>

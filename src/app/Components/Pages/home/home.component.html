@@ -1,0 +1,252 @@
+<app-header></app-header>
+<!-- app.component.html -->
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div
+      class="row d-flex align-items-center justify-content-center fullscreen"
+    >
+      <div class="banner-content col-lg-12">
+        <h1 class="text-white"><span>1500+</span> Jobs posted last week</h1>
+        <form action="search.html" class="serach-form-area">
+          <div class="row justify-content-center form-wrap">
+            <div class="col-lg-4 form-cols">
+              <input
+                type="text"
+                class="form-control"
+                name="search"
+                placeholder="what are you looging for?"
+              />
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select">
+                <select class="form-select">
+                  <option>Chọn Thành Phố</option>
+                  <option
+                    *ngFor="let option of apiprovince"
+                    [value]="option.id"
+                  >
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 form-cols">
+              <div class="default-select">
+                <select class="form-select">
+                  <option>Chọn kỹ năng</option>
+                  <option *ngFor="let option of apiskill" [value]="option.id">
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2 form-cols">
+              <button type="button" class="btn btn-info">
+                <span class="lnr lnr-magnifier"></span> Search
+              </button>
+            </div>
+          </div>
+        </form>
+        <p class="text-white">
+          <span>Search by tags:</span> Tecnology, Business, Consulting, IT
+          Company, Design, Development
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start popular-post Area -->
+<section class="popular-post-area pt-100">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="active-popular-post-carousel slick-carousel">
+        <ngx-slick-carousel
+          class="carousel"
+          #slickModal="slick-carousel"
+          [config]="{
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 4000,
+            responsive: [
+              {
+                breakpoint: 1000,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+            ]
+          }"
+        >
+          <div
+            class="single-popular-post-container"
+            *ngFor="let option of gettopnewjob"
+          >
+            <div ngxSlickItem class="single-popular-post">
+              <div class="content-wrapper">
+                <div class="thumb">
+                  <img src="{{ option.urlAvatar }}" alt="" />
+                  <a class="btns text-uppercase" [href]="'/job-post/' + option.slug">view job post</a>
+                </div>
+                <div class="details">
+                  <a href="#" style="text-decoration: none">
+                    <h4>{{ option.name | truncateText : 60 }}</h4>
+                  </a>
+                  <h6>
+                    <i class="fa-solid fa-location-dot"></i>&nbsp;{{
+                      option.province
+                    }}
+                  </h6>
+                  <div class="time bottomitem">
+                    <span>Hình thức</span>:&nbsp;{{ option.time }}
+                  </div>
+                  <div class="price-desc bottomitem">
+                    <i class="fa-solid fa-money-check-dollar"></i>&nbsp;<span
+                      class="price"
+                      >{{ option.minSalary | number }} -
+                      {{ option.maxSalary | number }}</span
+                    >
+                  </div>
+                  <div class="desc bottomitem">
+                    <i class="fa-solid fa-tag"></i>&nbsp;{{ option.skills }}
+                  </div>
+                  <div class="desc bottomitem">
+                    {{ option.title }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End popular-post Area -->
+<!-- Start feature-cat Area -->
+<section class="feature-cat-area pt-100" id="category">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-60 col-lg-10">
+        <div class="title text-center">
+          <h1 class="mb-10">Những Công Nghệ Hot Đang Chờ Bạn</h1>
+          <p>Lựa chọn công nghệ mà bạn thành thạo và ứng tuyển ngay thôi!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="active-popular-post-carousel slick-carousel">
+      <ngx-slick-carousel
+        class="carousel row"
+        #slickModal="slick-carousel"
+        [config]="{
+          slidesToShow: 6,
+          slidesToScroll: 1,
+
+          autoplaySpeed: 4000,
+          responsive: [
+            {
+              breakpoint: 1000,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            }
+          ]
+        }"
+      >
+        <div
+          class="col-lg-2 col-md-4 col-sm-6"
+          *ngFor="let option of dataskill"
+        >
+          <div ngxSlickItem class="single-fcat">
+            <a href="category.html">
+              <img src="{{ option.logo }}" style="width: 100px" alt="" />
+            </a>
+            <p style="padding-top: 30px">{{ option.name }}</p>
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+</section>
+<!-- End feature-cat Area -->
+
+<!-- Start callto-action Area -->
+<section class="callto-action-area section-gap mt-80" id="join">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content col-lg-9">
+        <div class="title text-center">
+          <h1 class="mb-10 text-white">Join us today without any hesitation</h1>
+          <p class="text-white">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation.
+          </p>
+          <a class="primary-btn" href="#">I am a Candidate</a>
+          <a class="primary-btn" href="#">Request Free Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End calto-action Area -->
+
+<!-- Start download Area -->
+<section class="download-area section-gap" id="app">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 download-left">
+        <img class="img-fluid" src="assets/img/d1.png" alt="" />
+      </div>
+      <div class="col-lg-6 download-right">
+        <h1>
+          Download the <br />
+          Job Listing App Today!
+        </h1>
+        <p class="subs">
+          It won’t be a bigger problem to find one video game lover in your
+          neighbor. Since the introduction of Virtual Game, it has been
+          achieving great heights so far as its popularity and technological
+          advancement are concerned.
+        </p>
+        <div class="d-flex flex-row">
+          <div class="buttons">
+            <i class="fa fa-apple" aria-hidden="true"></i>
+            <div class="desc">
+              <a href="#">
+                <p>
+                  <span>Available</span> <br />
+                  on App Store
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="buttons">
+            <i class="fa fa-android" aria-hidden="true"></i>
+            <div class="desc">
+              <a href="#">
+                <p>
+                  <span>Available</span> <br />
+                  on Play Store
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

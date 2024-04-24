@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { UserService } from './services/Admin/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   isAdminPage: boolean = false;
   isEmployerPage: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router , private userservice : UserService) {}
 
   ngOnInit(): void {
     const authUserData = localStorage.getItem('datatoken');
@@ -22,6 +23,7 @@ export class AppComponent {
       const parsedData = JSON.parse(authUserData);
       if(parsedData.role === "User"){
         this.username = parsedData.fullName;
+        this.userservice.idUser = parsedData.id;
       } else {
         this.username = '';
       }

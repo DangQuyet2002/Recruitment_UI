@@ -1,0 +1,189 @@
+<app-header></app-header>
+<!-- app.component.html -->
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">
+          Job Details
+        </h1>
+        <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="single.html"> Job Details</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start post Area -->
+<section class="post-area section-gap">
+  <div class="container" *ngIf="jobDetails">
+    <div class="row justify-content-center d-flex">
+      <div class="col-lg-8 post-list">
+        <div class="single-post d-flex flex-row" style="border: 1px solid #8067f6;border-radius: 10px;">
+          <div class="details">
+            <div class="title d-flex flex-row justify-content-between">
+              <div class="titles">
+                <a href="#" style="text-decoration: none;"><h4>{{jobDetails.name}}</h4></a>
+                <h6>Hạn nộp hồ sơ : {{jobDetails.expirationDate | date: 'dd/MM/yyyy'}}</h6>
+              </div>
+
+            </div>
+
+            <p>
+              <i class="fa-solid fa-location-dot">&nbsp;</i>{{jobDetails.province}}
+            </p>
+            <h5>Job Nature: {{jobDetails.time}}</h5>
+            <p class="address"><span class="lnr lnr-database"></span> {{jobDetails.minSalary | number}} - {{jobDetails.maxSalary | number}} VNĐ</p>
+            <ul class="btnApply">
+              <li><a href="#"><i class="fa-regular fa-paper-plane"></i>&nbsp;Ứng tuyển ngay</a></li>
+              <li><a href="#"><i class="fa-solid fa-heart"></i>&nbsp;Lưu Tin</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="single-post job-details">
+          <h4 class="single-title">Chi tiết tin tuyển dụng</h4>
+          <h5 class="single-title">Mô tả công việc</h5>
+          <p [innerHTML]="jobDetails.jobDescription"></p>
+        </div>
+        <div class="single-post job-experience">
+          <h5 class="single-title">Yêu cầu ứng viên</h5>
+          <p [innerHTML]="jobDetails.requirements"></p>
+        </div>
+        <div class="single-post job-experience">
+          <h5 class="single-title">Ưu Tiên</h5>
+          <p [innerHTML]="jobDetails.prioritize"></p>
+        </div>
+        <div class="single-post job-experience">
+          <h5 class="single-title">Quyền lợi</h5>
+          <p [innerHTML]="jobDetails.benefits"></p>
+        </div>
+      </div>
+      <div class="col-lg-4 sidebar">
+        <div class="single-slidebar">
+          <div class="single-post" style="display: flex; gap: 16px;">
+            <div class="thumb"  >
+              <img src="{{jobDetails.urlAvatar}}" alt="">
+            </div>
+            <div class="details">
+              <div class="title d-flex flex-row justify-content-between">
+                <div class="titles">
+                  <a href="#" style="text-decoration: none;"><h6>{{jobDetails.fullName}}</h6></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p><i class="fa-solid fa-user-group"></i>&nbsp;Quy Mô : {{jobDetails.companySize}} Nhân viên</p>
+          <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp;Địa Chỉ : {{jobDetails.address}}</p>
+          <a href="{{jobDetails.websiteURL}}">Xem trang công ty</a>
+
+          <h5 class="mt-30 mb-30">Thông Tin Chung</h5>
+          <ul class="job-list">
+            <li class="job-item">
+                <span class="job-icon"><i class="fa-solid fa-star"></i></span>
+                <div class="job-info">
+                  <div class="job-title">Cấp Bậc</div>
+                  <div class="job-duration">{{jobDetails.rank}}</div>
+              </div>
+            </li>
+            <li class="job-item">
+                <span class="job-icon"><i class="fa-regular fa-clock"></i></span>
+                <div class="job-info">
+                  <div class="job-title">Kinh nghiệm</div>
+                  <div class="job-duration">{{jobDetails.experiencee}}</div>
+                </div>
+            </li>
+            <li class="job-item">
+                <span class="job-icon"><i class="fa-solid fa-users"></i></span>
+                <div class="job-info">
+                  <div class="job-title">Số lượng tuyển</div>
+                  <div class="job-duration">{{jobDetails.quantity}}&nbsp;Người</div>
+              </div>
+            </li>
+            <li class="job-item">
+                <span class="job-icon"><i class="fa-solid fa-suitcase-rolling"></i></span>
+                <div class="job-info">
+                  <div class="job-title">Hình thức làm việc</div>
+                  <div class="job-duration">{{jobDetails.time}}</div>
+              </div>
+            </li>
+            <li class="job-item">
+                <span class="job-icon"><i class="fa-solid fa-venus-mars"></i></span>
+                <div class="job-info">
+                <div class="job-title">Giới tính</div>
+                <div class="job-duration">{{jobDetails.gender}}</div>
+              </div>
+            </li>
+        </ul>
+        </div>
+
+        <div class="single-slidebar">
+          <h4>Gợi ý việc làm phù hợp</h4>
+          <div class="single-slidebar" *ngFor=" let job of jobTitel">
+            <div class="single-post" style="display: flex; gap: 16px;">
+              <div class="thumbtitle"  >
+                <img src="{{job.urlAvatar}}" alt="">
+              </div>
+              <div class="details">
+                <div class="title flex-row justify-content-between">
+                  <div class="titles">
+                    <a href="#" style="text-decoration: none;"><p class="example" style="font-weight: bold;">{{job.name | truncateText : 20}}</p></a>
+                  </div>
+                  <div class="titles">
+                    <a href="#" style="text-decoration: none;"><p>{{job.fullName | truncateText : 20}}</p></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex" style="justify-content: space-around;">
+              <div>
+                <p>{{job.salary}} triệu</p>
+              </div>
+              <div>
+                <p>{{job.province}}</p>
+              </div>
+              <a href="#"><i class="fa-solid fa-heart"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="single-slidebar">
+          <h4>Jobs by Category</h4>
+          <ul class="cat-list">
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Technology</p><span>37</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Media & News</p><span>57</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Goverment</p><span>33</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Medical</p><span>36</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Restaurants</p><span>47</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Developer</p><span>27</span></a></li>
+            <li><a class="justify-content-between d-flex" href="category.html"><p>Accounting</p><span>17</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End post Area -->
+
+
+<!-- Start callto-action Area -->
+<section class="callto-action-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content col-lg-9">
+        <div class="title text-center">
+          <h1 class="mb-10 text-white">Join us today without any hesitation</h1>
+          <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          <a class="primary-btn" href="#">I am a Candidate</a>
+          <a class="primary-btn" href="#">We are an Employer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

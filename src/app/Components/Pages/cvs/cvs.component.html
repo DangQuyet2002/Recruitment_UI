@@ -1,0 +1,172 @@
+<app-header></app-header>
+<section class="banner-area relative" id="home">
+   <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">CVs của bạn</h1>
+        <p class="text-white link-nav">
+          <a href="index.html">Home </a>
+          <span class="lnr lnr-arrow-right"></span>
+          <a href="about-us.html">CVs của bạn</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact-page-area section-gap">
+  <div class="container">
+      <div class="row">
+          <div class='col-sm-8'>
+              <div class="box-container">
+                  <div class='box-header'>
+                      <h1>CV đã tạo trên SendCV</h1>
+                      <a href="/create-cv/@account.Id" class='primary-animation'><i class="fa-solid fa-plus"></i>Tạo cv</a>
+                  </div>
+                  <div class='box-body' style="margin: -12px;">
+
+                          <div class="card" style="width: 18rem;">
+                              <div class='image-container'><img src="https://th.bing.com/th/id/OIP.e1QBx6ObyBFNRVI4n8NxZAHaKe?rs=1&pid=ImgDetMain" class="card-img-top" alt="..."></div>
+                              <div class="card-body">
+                                  <h1 class="card-title">CvName</h1>
+                                  <p class="card-text">Tạo ra vào lúc ApplyDate</p>
+                                  <div class='action-btns'>
+                                      <a href="" class="btn primary-animation">Xem</a>
+                                      <a href="" onclick="deleteCV()" class="btn primary-animation">Xóa</a>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="unCV">
+                              <img src="https://static.topcv.vn/v4/image/cv-manager/no-cv.png" alt=""/>
+                              <h1>Bạn chưa tạo CV nào</h1>
+                          </div>
+
+
+                  </div>
+              </div>
+
+              <div class="box-container">
+                  <div class='box-header'>
+                      <h1>CV đã tải lên SendCV</h1>
+                      <a href="#" class='primary-animation'><i class="fa-solid fa-upload"></i>Tải Lên</a>
+                  </div>
+                  <div class='box-body'>
+                      <div class="card" style="width: 18rem;">
+                          <div class='image-container'><img src="https://th.bing.com/th/id/OIP.e1QBx6ObyBFNRVI4n8NxZAHaKe?rs=1&pid=ImgDetMain" class="card-img-top" alt="..."></div>
+                          <div class="card-body">
+                              <h5 class="card-title">dohoangphuongduy</h5>
+                              <p class="card-text">Tạo ra vào lúc 28-07-2002</p>
+                              <div class='action-btns'>
+                                  <a href="#" class="btn primary-animation">Xem</a>
+                                  <a href="#" class="btn primary-animation">Xóa</a>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="unCV">
+                          <img src="https://static.topcv.vn/v4/image/cv-manager/no-cv.png" alt=""/>
+                          <h1>Bạn chưa tải lên CV nào</h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class='box-container profile-info'>
+              <div class='box-header' style="display: block;">
+                <div class="profile-avatar">
+                  <ng-container *ngIf="dataCate.urlAvatar; else defaultAvatar">
+                    <img [src]="dataCate.urlAvatar" alt="Avatar">
+                  </ng-container>
+
+                  <ng-template #defaultAvatar>
+                    <img [src]="avatarSrc" alt="Default Avatar">
+                  </ng-template>
+
+                  <input type="file" id="avatarUploadInput" >
+                </div>
+
+                <input type="text" id="yourIdInput" value="" placeholder="Enter ID" style="display:none">
+                <div class='profile-content'>
+                  <div class="text-welcome">Chào bạn trở lại,</div>
+                  <h4 class="profile-fullname">{{dataCate.fullName}}</h4>
+                  <span style="background-color:gray" class='is-verify'>
+                    Tài Khoản Đã Xác Thực
+                  </span>
+                  <a href="/price" class="btn upgrade-btn primary-animation">
+                    <i class="fa-solid fa-circle-arrow-up"></i>
+                    <span>
+                      Nâng Cấp Tài Khoản
+                    </span>
+                  </a>
+                </div>
+                <div class="box-body mt-50">
+                  <div class="group">
+                    <div class="group-switch">
+                      <input type="checkbox" id="switch-1" class="input-switch" [(ngModel)]="switch1Checked">
+                      <label for="switch-1" class="label-switch"></label>
+                      <span class="job-waiting-status-text" [ngClass]="{'status-off-1': !switch1Checked, 'status-on-1': switch2Checked}">
+                        {{ switch1Checked ? 'Đang Bật tìm việc' : 'Đang Tắt tìm việc' }}
+                      </span>
+                    </div>
+
+                    <div class="col-xs-12">
+                      <p class="job-waiting-text" *ngIf="!switch1Checked">
+                        Bật tìm việc giúp hồ sơ của bạn nổi bật hơn và được chú ý nhiều hơn trong danh sách tìm kiếm của
+                      </p>
+
+                      <div class="box-job-waiting" *ngIf="switch1Checked">
+                        <div class="box-job-waiting__title">
+                          Trạng thái <span class="highlight">Bật tìm việc</span> sẽ tự động tắt sau <span style="font-weight: bold;" id="time-remaining-turn-on-job">14 ngày</span>. Nếu bạn vẫn còn nhu cầu tìm việc, hãy <span class="highlight">Bật tìm việc trở lại</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="group mt-30">
+                    <div class="group-switch">
+                      <input type="checkbox" id="switch-2" class="input-switch" [(ngModel)]="switch2Checked">
+                      <label for="switch-2" class="label-switch"></label>
+                      <span class="job-waiting-status-text" [ngClass]="{'status-off-2': !switch2Checked, 'status-on-2': switch2Checked}">
+                        {{ switch2Checked ? 'Trạng thái tìm việc đang bật' : 'Chưa cho phép NTD tìm kiếm hồ sơ' }}
+                      </span>
+                    </div>
+
+                    <div class="col-xs-12" >
+                      <p class="job-waiting-description" *ngIf="!switch2Checked">
+                        Khi bạn cho phép, các NTD uy tín có thể chủ động kết nối và gửi đến bạn những cơ hội việc làm hấp dẫn nhất, giúp nhân đôi hiệu quả tìm việc.
+                      </p>
+
+                      <div class="description-allow-employee-search" *ngIf="switch2Checked">
+                        <p style="margin-bottom: 10">
+                          Khi có cơ hội việc làm phù hợp, NTD sẽ liên hệ và trao đổi với bạn qua:
+                        </p>
+                        <ul>
+                          <div>
+                            <i class="fa-solid fa-check"></i>
+                            <li>Nhắn tin qua Top Connect trên SendCV</li>
+                          </div>
+                          <div>
+                            <i class="fa-solid fa-check"></i>
+                            <li>Email và Số điện thoại của bạn</li>
+                          </div>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='box-footer' style="margin-top: 12px">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>
+                Cập nhật SendCV Profile để gia tăng 300% cơ hội việc làm tốt
+              </span>
+
+            </div>
+          </div>
+      </div>
+  </div>
+</section>

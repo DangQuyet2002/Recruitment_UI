@@ -8,6 +8,7 @@
   <i class="fas fa-plus"></i> Thêm
 </button>
 
+<div style="overflow-x: auto;">
 <table class="table">
   <thead>
     <tr>
@@ -20,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cate of dataCate">
+    <tr *ngFor="let cate of dataCate | paginate: { itemsPerPage: 6, currentPage: p }">
       <td>{{ cate.name }}</td>
       <td>{{ cate.createdate | date: 'dd/MM/yyyy' }}</td>
       <td>{{ cate.province }}</td>
@@ -33,11 +34,13 @@
         <button class="btn btn-danger">Xóa</button>
       </td>
     </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
     <tr *ngIf="dataCate.length === 0">
       <td colspan="6">Không có dữ liệu</td>
     </tr>
   </tbody>
 </table>
+</div>
 
 <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -57,16 +60,16 @@
               <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">Tổng Quan</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Giới Thiệu</button>
+              <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">Mô tả công việc</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Mục Tiêu Đối Tượng</button>
+              <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">Yêu cầu ứng viên</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Kinh Nghiệm</button>
+              <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">Ưu Tiên</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab" aria-controls="tab5" aria-selected="false">Miêu Tả</button>
+              <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab" aria-controls="tab5" aria-selected="false">Quyền Lợi</button>
             </li>
           </ul>
 
@@ -79,7 +82,7 @@
                 <input type="text" class="form-control" [(ngModel)]="createjob.name" id="Name" name="Name" required>
               </div>
               <div style="display: flex;">
-                <div class="form-group">
+                <div class="form-group col">
                   <label for="skillLogo">Min salary:</label>
                   <input type="text" class="form-control" [(ngModel)]="createjob.minSalary" id="Minsalary" name="Minsalary" required>
                 </div>
@@ -88,11 +91,42 @@
                   <input type="text" class="form-control" [(ngModel)]="createjob.maxSalary" id="Maxsalary" name="Maxsalary" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="skillLogo" class="form-label">Province:</label>
-                <select class="form-select" [(ngModel)]="createjob.provinceId" name="provinceId">
-                  <option *ngFor="let option of apiprovince" [value]="option.id">{{ option.name }}</option>
-                </select>
+              <div style="display: flex;">
+                <div class="form-group col">
+                  <label for="skillLogo">Quantity:</label>
+                  <input type="text" class="form-control" [(ngModel)]="createjob.quantity" id="Minsalary" name="Minsalary" required>
+                </div>
+                <div class="form-group col">
+                  <label for="gender">Gender:</label>
+                  <select class="form-select" [(ngModel)]="createjob.gender" id="gender" name="gender" required>
+                      <option value="Nam">Nam</option>
+                      <option value="Nữ">Nữ</option>
+                      <option value="Không Yêu Cầu">Không Yêu Cầu</option>
+                  </select>
+                </div>
+                <div class="form-group col">
+                  <label for="skillLogo">ExpirationDate:</label>
+                  <input type="date" class="form-control" [(ngModel)]="createjob.expirationDate" id="Maxsalary" name="Maxsalary" required>
+                </div>
+              </div>
+              <div style="display: flex;">
+                <div class="form-group col" >
+                  <label for="skillLogo" class="form-label">Province:</label>
+                  <select class="form-select" [(ngModel)]="createjob.provinceId" name="provinceId">
+                    <option *ngFor="let option of apiprovince" [value]="option.id">{{ option.name }}</option>
+                  </select>
+                </div>
+                <div class="form-group col" >
+                  <label for="skillLogo">Number of years of Experience:</label>
+                  <input type="text" class="form-control" [(ngModel)]="createjob.experiencee" id="Minsalary" name="Minsalary" required>
+                </div>
+              </div>
+              <div class="form-group" >
+                <label for="skillLogo">Rank:</label>
+                <select class="form-select" [(ngModel)]="createjob.rank" id="rank" name="rank" required>
+                  <option value="Thực Tập Sinh">Thực Tập Sinh</option>
+                  <option value="Nhân Viên">Nhân Viên</option>
+              </select>
               </div>
               <div class="form-group">
                 <label for="skillLogo" class="form-label">Time:</label>
@@ -117,25 +151,25 @@
             <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
               <!-- Content for Tab 2 -->
               <div class="form-group">
-                <label for="skillLogo" class="form-label">Giới thiệu</label>
-                <ckeditor [(ngModel)]="createjob.introduce" [editor]="Editor" name="introduce" ></ckeditor>
+                <label for="skillLogo" class="form-label">Mô Tả Công Việc</label>
+                <ckeditor [(ngModel)]="createjob.jobdescription" [editor]="Editor" name="jobdescription" ></ckeditor>
               </div>
 
             </div>
             <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
               <!-- Content for Tab 3 -->
-              <label for="skillLogo" class="form-label">Mục tiêu đối tượng</label>
-              <ckeditor [(ngModel)]="createjob.objectTarget" [editor]="Editor" name="objectTarget"></ckeditor>
+              <label for="skillLogo" class="form-label">Yêu cầu ứng viên</label>
+              <ckeditor [(ngModel)]="createjob.requirements" [editor]="Editor" name="requirements"></ckeditor>
             </div>
             <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
               <!-- Content for Tab 4 -->
-              <label for="skillLogo" class="form-label">Kinh Nghiệm</label>
-              <ckeditor [(ngModel)]="createjob.experience" [editor]="Editor" name="experience"></ckeditor>
+              <label for="skillLogo" class="form-label">Ưu tiên</label>
+              <ckeditor [(ngModel)]="createjob.prioritize" [editor]="Editor" name="prioritize"></ckeditor>
             </div>
             <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
               <!-- Content for Tab 4 -->
-              <label for="skillLogo" class="form-label">Miêu Tả</label>
-              <ckeditor [(ngModel)]="createjob.description" [editor]="Editor" name="description"></ckeditor>
+              <label for="skillLogo" class="form-label">Quyền Lợi</label>
+              <ckeditor [(ngModel)]="createjob.benefits" [editor]="Editor" name="benefits"></ckeditor>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Thêm</button>
@@ -162,16 +196,16 @@
               <button class="nav-link active" id="tab6-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button" role="tab" aria-controls="tab6" aria-selected="true">Tổng Quan</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab7-tab" data-bs-toggle="tab" data-bs-target="#tab7" type="button" role="tab" aria-controls="tab7" aria-selected="false">Giới Thiệu</button>
+              <button class="nav-link" id="tab7-tab" data-bs-toggle="tab" data-bs-target="#tab7" type="button" role="tab" aria-controls="tab7" aria-selected="false">Mô tả công việc</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab8-tab" data-bs-toggle="tab" data-bs-target="#tab8" type="button" role="tab" aria-controls="tab8" aria-selected="false">Mục Tiêu Đối Tượng</button>
+              <button class="nav-link" id="tab8-tab" data-bs-toggle="tab" data-bs-target="#tab8" type="button" role="tab" aria-controls="tab8" aria-selected="false">Yêu cầu ứng viên</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab9-tab" data-bs-toggle="tab" data-bs-target="#tab9" type="button" role="tab" aria-controls="tab9" aria-selected="false">Kinh Nghiệm</button>
+              <button class="nav-link" id="tab9-tab" data-bs-toggle="tab" data-bs-target="#tab9" type="button" role="tab" aria-controls="tab9" aria-selected="false">Ưu Tiên</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab10-tab" data-bs-toggle="tab" data-bs-target="#tab10" type="button" role="tab" aria-controls="tab10" aria-selected="false">Miêu Tả</button>
+              <button class="nav-link" id="tab10-tab" data-bs-toggle="tab" data-bs-target="#tab10" type="button" role="tab" aria-controls="tab10" aria-selected="false">Quyền Lợi</button>
             </li>
           </ul>
 
@@ -222,25 +256,25 @@
             <div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="tab7-tab">
               <!-- Content for Tab 2 -->
               <div class="form-group">
-                <label for="skillLogo" class="form-label">Giới thiệu</label>
-                <ckeditor [(ngModel)]="createjob.introduce" [editor]="Editor" name="introduce" ></ckeditor>
+                <label for="skillLogo" class="form-label">Mô tả công việc</label>
+                <ckeditor [(ngModel)]="createjob.jobdescription" [editor]="Editor" name="jobdescription" ></ckeditor>
               </div>
 
             </div>
             <div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="tab8-tab">
               <!-- Content for Tab 3 -->
-              <label for="skillLogo" class="form-label">Mục tiêu đối tượng</label>
-              <ckeditor [(ngModel)]="createjob.objectTarget" [editor]="Editor" name="objectTarget"></ckeditor>
+              <label for="skillLogo" class="form-label">Yêu cầu ứng viên</label>
+              <ckeditor [(ngModel)]="createjob.requirements" [editor]="Editor" name="requirements"></ckeditor>
             </div>
             <div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="tab9-tab">
               <!-- Content for Tab 4 -->
-              <label for="skillLogo" class="form-label">Kinh Nghiệm</label>
-              <ckeditor [(ngModel)]="createjob.experience" [editor]="Editor" name="experience"></ckeditor>
+              <label for="skillLogo" class="form-label">Ưu Tiên</label>
+              <ckeditor [(ngModel)]="createjob.prioritize" [editor]="Editor" name="prioritize"></ckeditor>
             </div>
             <div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="tab10-tab">
               <!-- Content for Tab 4 -->
-              <label for="skillLogo" class="form-label">Miêu Tả</label>
-              <ckeditor [(ngModel)]="createjob.description" [editor]="Editor" name="description"></ckeditor>
+              <label for="skillLogo" class="form-label">Quyền Lợi</label>
+              <ckeditor [(ngModel)]="createjob.benefits" [editor]="Editor" name="benefits"></ckeditor>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Sửa</button>

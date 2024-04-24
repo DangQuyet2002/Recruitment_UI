@@ -8,6 +8,7 @@ import { Login, Register } from '../../Common/models/Admin';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
+  idUser = "";
 
   public register(user: Register): Observable<any> {
     return this.http.post<any>(

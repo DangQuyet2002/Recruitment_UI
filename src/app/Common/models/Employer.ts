@@ -79,16 +79,33 @@ export class Token {
 export class CreateJob {
   id: number = 0;
   name: string = "";
-  description: string = "";
-  introduce: string = "";
-  objectTarget: string = "";
-  experience: string = "";
+  jobdescription: string = "";
+  requirements: string = "";
+  benefits: string = "";
+  prioritize: string = "";
+  experiencee: string = "";
+  quantity: number = 0;
+  rank: string  = "";
+  gender: string ="";
+  expirationDate: string = "";
   provinceId: number = 0;
   timeId: number = 0;
   minSalary: number = 0;
   maxSalary: number = 0;
   skillIds: number[] = [];
   titleId: number = 0;
+}
+
+export class DataSkill {
+  id: number;
+  name: string;
+  logo : string;
+  constructor(id: number, name: string , logo : string ) {
+    this.id = id;
+    this.name = name;
+    this.logo=logo;
+
+  }
 }
 
 

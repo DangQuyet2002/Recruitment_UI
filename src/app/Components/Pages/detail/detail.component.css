@@ -1,0 +1,71 @@
+.btnApply {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btnApply li {
+  display: inline-block;
+}
+
+.btnApply li a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 20px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  background-color: #b19efe;
+  color: #333;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btnApply li a:hover {
+  background-color: #e0e0e0;
+}
+
+
+.job-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* CSS cho mỗi mục trong danh sách */
+.job-item {
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+}
+
+.job-icon {
+  margin-right: 10px;
+  width: 50px;
+  color: green;
+  display: inline-block;
+  text-align: center;
+  font-size: 24px; /* Điều chỉnh kích thước của icon */
+  border-radius: 25%; /* Tạo hình tròn bằng cách sử dụng border-radius */
+  background-color: #b29ffe; /* Màu nền của hình tròn */
+  padding: 10px; /* Điều chỉnh khoảng cách giữa icon và viền hình tròn */
+  color: #fff; /* Màu của icon */
+}
+
+.job-info {
+  display: flex;
+  flex-direction: column;
+}
+.job-title {
+  flex: 1; /* Dùng để chia đều không gian giữa các phần tử con */
+}
+
+/* Các thuộc tính CSS cho thời gian "5 năm" */
+.job-duration {
+  flex: 1;
+  font-weight: bold; /* Dùng để chia đều không gian giữa các phần tử con */
+}
+.example {
+  width: 200px; /* Chiều rộng của phần tử */
+  white-space: nowrap; /* Ngăn văn bản từ việc xuống dòng */
+  overflow: hidden; /* Ẩn phần văn bản vượt quá */
+}
