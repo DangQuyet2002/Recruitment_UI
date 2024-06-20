@@ -1,0 +1,96 @@
+<!-- Modal -->
+<button class="btn btn-success" data-toggle="modal" data-target="#addRoleModal">
+  <i class="fas fa-plus"></i> Thêm
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tên</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>File</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cate of dataCate | paginate: { itemsPerPage: 5, currentPage: p }">
+      <td>{{cate.name}}</td>
+      <td>{{cate.description}}</td>
+      <td><img [src]="cate.urlImage" style="width: 70px" /></td>
+      <td (click)="downloadFile(cate.url , cate.name)"><i class="fa-solid fa-download"></i></td>
+      <td>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#updateRoleModal">Sửa</button>
+        <button class="btn btn-danger" (click)="DeleteTemplate(cate.id)">Xóa</button>
+      </td>
+    </tr>
+    <tr *ngIf="!dataCate">
+      Không có dữ liệu
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRoleModalLabel">Thêm Kỹ Năng Mới</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form để nhập dữ liệu mới -->
+        <form (ngSubmit)="CreateTemplate()" #uploadForm="ngForm">
+          <div class="form-group">
+            <label for="skillName">Tên:</label>
+            <input type="text" class="form-control" id="skillName" name="Name" [(ngModel)]="createtemp.name" required>
+          </div>
+          <div class="form-group">
+            <label for="skillDescription">Mô Tả:</label>
+            <input type="text" class="form-control" id="skillDescription" name="Description" [(ngModel)]="createtemp.description" required>
+          </div>
+          <div class="form-group" style="display: grid;padding-bottom: 20px;">
+            <label for="skillLogo">Logo:</label>
+            <input type="file" (change)="onFileChanged($event)">
+          </div>
+          <div class="form-group" style="display: grid;">
+            <label for="skillTemplate">File Template:</label>
+            <input type="file" (change)="onFileSelected($event)">
+          </div>
+          <button type="submit" class="btn btn-primary">Thêm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateRoleModal" tabindex="-1" role="dialog" aria-labelledby="updateRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateRoleModalLabel">Cập nhật Kĩ năng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form để nhập dữ liệu mới -->
+        <form >
+          <div class="form-group">
+            <label for="skillName">Tên:</label>
+            <input type="text" class="form-control" id="skillName"name="SkillName" >
+          </div>
+          <div class="form-group">
+            <label for="logo">Logo:</label>
+            <img [src]="" alt="Ảnh" class="form-image" id="logo" style="width: 70px;">
+          </div>
+          <input type="file" class="form-control" id="skillLogo"  name="skillLogo" required>
+
+          <button type="submit" class="btn btn-primary">Sửa</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

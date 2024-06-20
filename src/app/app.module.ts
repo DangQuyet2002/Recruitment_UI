@@ -40,7 +40,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DetailComponent } from './Components/Pages/detail/detail.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileUserComponent } from './Components/Pages/profile-user/profile-user.component';
-import { CvsComponent } from './Components/Pages/cvs/cvs.component';
+import { CvsComponent } from './Components/Pages/CV/cvs/cvs.component';
+import { TemplateCvComponent } from './Components/Pages/CV/template-cv/template-cv.component';
+import { TemplateComponent } from './Components-Admin/Pages/template/template.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -70,6 +72,8 @@ import { CvsComponent } from './Components/Pages/cvs/cvs.component';
     TruncateTextPipe,
     ProfileUserComponent,
     CvsComponent,
+    TemplateCvComponent,
+    TemplateComponent,
     DetailComponent],
   imports: [BrowserModule,
     AppRoutingModule,

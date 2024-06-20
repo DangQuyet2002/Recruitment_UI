@@ -35,6 +35,14 @@ export class ProfileUser {
   urlAvatar: string  = "";
   gender: string = "";
   websiteURL: string  = "";
+}
 
+
+export class CvsByUser {
+  id: string = "";
+  userId: string = "";
+  name: string = "";
+  urlFile : string = "";
+  createDate : string ="";
 }
 

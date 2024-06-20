@@ -1,0 +1,8 @@
+.gradient-text {
+  background: linear-gradient(to right, #bca9fe, #8268f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.container.slide-container{
+  margin-top: 58px;
+}

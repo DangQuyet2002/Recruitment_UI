@@ -131,3 +131,27 @@ export class ListTitle {
 export class CreateTitle {
   name = "";
 }
+
+export class ListTemplate {
+  id: number;
+  name = "";
+  description = "";
+  url ="";
+  urlImage = "";
+
+  constructor(id: number) {
+    this.id = id;
+  }
+}
+
+export class CreateTemplate {
+  name = "";
+  description ="";
+  url: File;
+  urlImage: File;
+
+  constructor() {
+    this.url = new File([], '');
+    this.urlImage = new File([], '');
+  }
+}

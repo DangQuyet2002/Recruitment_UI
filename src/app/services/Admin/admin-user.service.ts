@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateCategory, CreateProvince, CreateRoleModel, CreateSkill, CreateTitle, GetAllUse, ListCategory, ListProvince, ListSkill, ListTitle, ManageUserRoles, RecruiterManagement, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/Admin';
+import { CreateCategory, CreateProvince, CreateRoleModel, CreateSkill, CreateTemplate, CreateTitle, GetAllUse, ListCategory, ListProvince, ListSkill, ListTitle, ManageUserRoles, RecruiterManagement, RoleManagement, UpdateRoleModel } from 'src/app/Common/models/Admin';
 import { environment } from 'src/environments/environment';
-import { GetAllEmployer } from '../../Common/models/Admin';
+import { GetAllEmployer, ListTemplate } from '../../Common/models/Admin';
 import { v4 as uuidv4 } from 'uuid';
 import { Token } from '@angular/compiler';
 
@@ -16,6 +16,7 @@ export class AdminUserService {
   private urlCate = 'AdminCategory';
   private urlProvince = 'AdminProvince';
   private urlSkill = 'AdminSkill';
+  private urlTemplate = 'AdminTemplate';
   private urlTitle = 'AdminTitle';
   private urlUser = 'User';
   private token = "";
@@ -148,5 +149,18 @@ export class AdminUserService {
   }
   public GetTitleById(id : number): Observable<ListTitle[]> {
     return this.http.get<ListTitle[]>(`${environment.apiUrl}/${this.urlTitle}/GetTitleById?id=${id}`);
+  }
+
+  //Template CV
+  public GetListTemplate(): Observable<ListTemplate[]> {
+    return this.http.get<ListTemplate[]>(`${environment.apiUrl}/${this.urlTemplate}/GetListTeamplate`);
+  }
+
+  public CreateTemplate(formData: FormData): Observable<any[]> {
+    return this.http.post<any[]>(`${environment.apiUrl}/${this.urlTemplate}/CreateTemplate`,formData);
+  }
+
+  public DeleteTemplate(id : number): Observable<any[]> {
+    return this.http.delete<any[]>(`${environment.apiUrl}/${this.urlTemplate}/DeleteTemplate?id=${id}`);
   }
 }

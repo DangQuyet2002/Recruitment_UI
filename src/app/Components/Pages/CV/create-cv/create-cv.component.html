@@ -1,0 +1,9 @@
+<div class="page">
+  <div class="header">
+    <input #fileNameInput type="text" placeholder="Enter CV name" />
+    <button (click)="save(fileNameInput.value)">Lưu Tài Liệu</button>
+    <button (click)="saveDocument(fileNameInput.value)">Lưu và Tải Xuống</button>
+  </div>
+  <div #viewer class="viewer"></div>
+</div>
+

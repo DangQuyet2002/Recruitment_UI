@@ -10,7 +10,9 @@ import { RecruiterManagementComponent } from './Components-Admin/Pages/recruiter
 import { JobsEmployerComponent } from './Components-Employer/Jobs-employer/jobs-employer/jobs-employer.component';
 import { DetailComponent } from './Components/Pages/detail/detail.component';
 import { ProfileUserComponent } from './Components/Pages/profile-user/profile-user.component';
-import { CvsComponent } from './Components/Pages/cvs/cvs.component';
+import { CvsComponent } from './Components/Pages/CV/cvs/cvs.component';
+import { TemplateCvComponent } from './Components/Pages/CV/template-cv/template-cv.component';
+import { CreateCvComponent } from './Components/Pages/CV/create-cv/create-cv.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'job-post/:slug', component: DetailComponent },
   { path: 'profile-user/:id', component: ProfileUserComponent },
   { path: 'my-cv', component: CvsComponent },
+  { path: 'template-cv', component: TemplateCvComponent },
+  { path: 'create-cv', component: CreateCvComponent },
 
 
 
@@ -80,6 +84,10 @@ const routes: Routes = [
       {
         path: 'list-title',
         loadChildren: () => import('./Components-Admin/Pages/title/title.module').then((m) => m.TitleModule),
+      },
+      {
+        path: 'teamplate-cv',
+        loadChildren: () => import('./Components-Admin/Pages/template/template.module').then((m) => m.TemplateModule),
       },
     ],
   },

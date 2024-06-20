@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetAllUse, RecruiterManagement } from 'src/app/Common/models/Admin';
@@ -15,6 +15,8 @@ import { ProfileUser } from 'src/app/Common/models/User';
 export class UserService {
   private url = 'Jobs';
   private urlProfile = 'Profile';
+  private cvs = 'CVs';
+
   idUser= '';
 
   constructor(private http:HttpClient) { }
@@ -48,4 +50,10 @@ export class UserService {
   public UpdateProfileUser(id: string, profile: ProfileUser) {
     return this.http.post<any>(`${environment.apiUrl}/${this.urlProfile}/update-profile/${id}`, profile);
   }
+
+  //CVs
+  public GetCvsByUser(id : string){
+    return this.http.get<any>(`${environment.apiUrl}/${this.cvs}/GetCvbyIdUser/${id}`);
+  }
+
 }
